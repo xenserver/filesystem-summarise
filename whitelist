@@ -1,0 +1,68 @@
+# This is a whitelist suitable for XCP
+#
+# Each line has the form:
+#   type:regexp
+# where type is one of:
+# I : ignore these files (harmless mutations)
+# T : transient files; delete on boot
+# P : persistent state; preserve across reboots
+#
+I:/tmp
+I:/etc$
+I:/etc/issue$
+I:/etc/boottime.stamp$
+T:/etc/blkid$
+T:/etc/blkid/blkid.tab$
+T:/etc/blkid/blkid.tab.old$
+I:/etc/firstboot.d/data$
+I:/etc/firstboot.d/data/iqn.conf$
+P:/etc/firstboot.d/log
+P:/etc/firstboot.d/state
+I:/etc/lvm/backup
+I:/etc/lvm/cache
+I:/etc/mtab$
+T:/etc/openvswitch/conf.db$
+P:/etc/ntp.conf$
+T:/etc/ntp.conf.predhclient$
+I:/etc/resolv.conf$
+P:/etc/ssh
+P:/etc/sysconfig/network$
+P:/etc/sysconfig/network-scripts
+P:/etc/xensource-inventory
+I:/var/cache
+T:/var/empty/sshd/etc
+I:/var/lib/ntp
+I:/var/lib/dhclient
+T:/var/lock
+P:/var/log/installer
+P:/var/log/SMlog
+P:/var/log/VMPR
+P:/var/log/boot
+P:/var/log/daemon
+P:/var/log/dmesg
+P:/var/log/fail
+P:/var/log/kern
+P:/var/log/messages
+P:/var/log/openvswitch
+P:/var/log/rpm
+P:/var/log/sa
+P:/var/log/secure
+P:/var/log/squeezed
+P:/var/log/user
+P:/var/log/v6d
+P:/var/log/xen
+T:/var/run
+T:/var/tmp
+P:/var/xapi/blobs/messages
+P:/var/xapi/blobs/rrds
+T:/var/xapi/forker
+P:/var/xapi/files.db$
+P:/var/xapi/local.db$
+P:/var/xapi/network.dbcache$
+P:/var/xapi/state.db$
+P:/var/xapi/state.db.generation$
+T:/var/xapi/udhcpd.conf$
+T:/var/xapi/xapi-ssl.conf$
+T:/var/xen/vncterm
+I:/root/.lesshst$
+I:.*\.pyc$

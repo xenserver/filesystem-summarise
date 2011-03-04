@@ -1,0 +1,3 @@
+<collect>
+<command label="filesystem_summarise">/opt/xensource/libexec/filesystem_summarise</command>
+</collect>
