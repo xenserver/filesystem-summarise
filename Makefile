@@ -18,17 +18,14 @@ install: filesystem_summarise bugtool/filesystem_summarise.xml bugtool/stuff.xml
 	install -D 05-filesystem-summarise $(DESTDIR)/etc/firstboot.d/05-filesystem-summarise
 	install -D whitelist $(DESTDIR)/etc/xensource/whitelist
 
-RPM_SOURCEDIR?=/usr/src/redhat/SOURCES
-RPM_RELEASE=$(call git rev-list HEAD | wc -l)
-.PHONY: version.inc 
-version.inc:
-	echo -n 'RPM_RELEASE=' > $@
-	git rev-list HEAD | wc -l >> $@
-include version.inc
-filesystem_summarise.spec: filesystem_summarise.spec.in version.inc
-	sed -e 's/@RPM_RELEASE@/$(RPM_RELEASE)/g' < $< > $@
+RPM_SOURCESDIR ?= /usr/src/redhat/SOURCES
+RPM_SRPMSDIR ?= /usr/src/redhat/SRPMS
 
-srpm: filesystem_summarise.spec version.inc
-	git archive --prefix=filesystem_summarise-0/ --format=tar HEAD | bzip2 -z > $(RPM_SOURCEDIR)/filesystem_summarise.tar.bz2
-	rpmbuild -bs --nodeps filesystem_summarise.spec
+filesystem_summarise.spec: filesystem_summarise.spec.in
+	sed -e 's/@RPM_RELEASE@/$(shell git rev-list HEAD | wc -l)/g' < $< > $@
+
+srpm: filesystem_summarise.spec
+	mkdir -p $(RPM_SOURCESDIR)
+	git archive --prefix=filesystem_summarise-0/ --format=tar HEAD | bzip2 -z > $(RPM_SOURCESDIR)/filesystem_summarise.tar.bz2
+	rpmbuild -bs --nodeps --define "_sourcedir ${RPM_SOURCESDIR}" --define "_srcrpmdir ${RPM_SRPMSDIR}" filesystem_summarise.spec
 
