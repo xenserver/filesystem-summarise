@@ -1,1 +1,10 @@
 filesystem_summarise detects unexpected changes in a filesystem and highlights them in bug reports.
+
+Usage:
+ ./filesystem_summarise [-path p] [-db d] [-whitelist w] [-mode m] [-v]
+
+where:
+p = Path to scan (default /)
+d = Path to store database (default /var/xapi/files.db)
+w = Path to whitelist (default /etc/xensource/whitelist)
+m = Mode ("summarise", "delete" or "list") (default "summarise")
