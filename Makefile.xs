@@ -4,7 +4,7 @@
 include $(B_BASE)/common.mk
 include $(B_BASE)/rpmbuild.mk
 
-REPO                   = $(call gitloc,filesystem-summarise)
+REPO                   = $(call git_loc,filesystem-summarise)
 
 .PHONY: $(MY_OUTPUT_DIR)/SRPMS
 $(MY_OUTPUT_DIR)/SRPMS:
