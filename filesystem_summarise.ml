@@ -106,7 +106,16 @@ let of_dir (root: string) =
 			let inodes = IntSet.add s.Unix.LargeFile.st_ino inodes in
 			Array.fold_left 
 				(fun acc file -> 
-					f (Filename.concat root file) acc) 
+					try 
+					  f (Filename.concat root file) acc
+					with 
+					  | Unix.Unix_error(Unix.ENOENT,_,_) ->
+					    Printf.fprintf stderr "Ignoring ENOENT from root=%s file=%s\n" root file;
+					    acc
+					  | e ->
+					    Printf.fprintf stderr "Got exception on root=%s file=%s\n" root file;
+					    raise e (* Exception gets printed on stdout *)
+				) 
 				(st_dev, inodes, files) children
 		else (st_dev, inodes, files) in
 	let s = Unix.LargeFile.lstat root in
