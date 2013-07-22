@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -fPIC -O2 -I/usr/lib/ocaml -I./
-OCAMLOPT = ocamlfind ocamlopt -package "stdext,unix,str"
+OCAMLOPT = ocamlfind ocamlopt -package "stdext,unix,str" -thread
 
 filesystem_summarise: filesystem_summarise.cmx filesystem_summarise_stubs.o
 	$(OCAMLOPT) -linkpkg filesystem_summarise.cmx filesystem_summarise_stubs.o -o $@
