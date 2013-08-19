@@ -9,7 +9,7 @@ License: LGPL+linking exception
 URL:  https://github.com/djs55/watchfs
 Source0: filesystem_summarise.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
-BuildRequires: ocaml, ocaml-findlib, ocaml-camlp4
+BuildRequires: ocaml, ocaml-findlib, ocaml-camlp4, ocaml-stdext-devel
 
 %description
 Simple filesystem modification scanner
