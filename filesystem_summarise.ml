@@ -12,7 +12,7 @@
  * GNU Lesser General Public License for more details.
  *)
 
-open Stringext
+open Xstringext
 
 (* C function with returns the number of filesystem blocks allocated, as 
    opposed to the apparent file size. The latter can be misleading in the
